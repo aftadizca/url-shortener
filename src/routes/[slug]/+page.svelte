@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import { goto } from '$app/navigation';
 	import { onMount } from 'svelte';
 	/** @type {import('./$types').PageData} */
@@ -6,4 +6,4 @@
 	onMount(() => goto(data.dest, { replaceState: true }));
 </script>
 
-<div>{console.log(data)}</div>
+<div>{console.log(data)}</div> -->
