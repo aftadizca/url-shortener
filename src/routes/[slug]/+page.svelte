@@ -6,4 +6,4 @@
 	onMount(() => goto(data.dest, { replaceState: true }));
 </script>
 
-<div>{data}</div>
+<div>{console.log(data)}</div>
