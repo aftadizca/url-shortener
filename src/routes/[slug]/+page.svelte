@@ -5,3 +5,5 @@
 	export let data;
 	onMount(() => goto(data.dest, { replaceState: true }));
 </script>
+
+<div>{data}</div>
