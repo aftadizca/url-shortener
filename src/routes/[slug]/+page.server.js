@@ -4,14 +4,20 @@ import { urls } from '../../lib/url-list';
 
 // /** @type {import('./$types').PageLoad} */
 export function load(x) {
-    console.log(x)
+    // console.log(x)
     const [r] = urls.filter(item => item.source === x.params.slug)
 
-    // console.log(params)
-    console.log(r)
-    if (r) {
-        throw redirect(308, r.destination)
-    }
+    const test = x.platform.env.URL.get();
 
-    throw error(404, 'Not found');
+
+
+    // console.log(params)
+    // console.log("assasas", r)
+    if (r) {
+        return { r: "sasaasas" }
+        // throw redirect(308, r.destination)
+    }
+    return { r: test }
+
+    // throw error(404, 'Not found');
 }
