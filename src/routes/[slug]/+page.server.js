@@ -7,7 +7,7 @@ export async function load(x) {
     // console.log(x)
     // const [r] = urls.filter(item => item.source === x.params.slug)
 
-    const test = x.platform.env.URL.get(x.params.slug);
+    // const test = x.platform.env.URL.get(x.params.slug);
 
 
 
@@ -17,7 +17,7 @@ export async function load(x) {
     // console.log(test)
     // test.then((/** @type {string} */ val) => { throw redirect(302, val) })
 
-    // return { r: test }
+    // return { r: "https://www.youtube.com" }
 
 
     return { r: test }
