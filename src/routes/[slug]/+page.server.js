@@ -7,7 +7,7 @@ export async function load(x) {
     // console.log(x)
     // const [r] = urls.filter(item => item.source === x.params.slug)
 
-    // const test = x.platform.env.URL.get(x.params.slug);
+    const test = x.platform.env.URL.get(x.params.slug);
 
 
 
