@@ -14,9 +14,11 @@ export async function load(x) {
     // console.log(params)
     // console.log("assasas", r)
     if (test) {
-        console.log(test)
+        // console.log(test)
+        return test.then((/** @type {string} */ value) => redirect(308, value)
+        );
         // return { r: test }
-        throw redirect(308, test)
+
     }
     // return { r: test }
 
