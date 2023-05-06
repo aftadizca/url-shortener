@@ -15,8 +15,7 @@ export async function load(x) {
     // console.log("assasas", r)
     if (test) {
         // console.log(test)
-        return test.then((/** @type {string} */ value) => { r: value });
-        // return { r: test }
+        return { r: test }
 
     }
     // return { r: test }
