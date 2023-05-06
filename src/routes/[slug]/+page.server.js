@@ -13,12 +13,12 @@ export async function load(x) {
 
     // console.log(params)
     // console.log("assasas", r)
-    if (test) {
-        // console.log(test)
-        redirect(302, test)
-        // return { r: test }
 
-    }
+    // console.log(test)
+    redirect(302, test)
+    // return { r: test }
+
+
     // return { r: test }
 
     // throw error(404, 'Not found');
