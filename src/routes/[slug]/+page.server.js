@@ -19,8 +19,9 @@ export async function load(x) {
 
     // return { r: "https://www.youtube.com" }
 
-
-    return { r: test }
+    if (test) {
+        return { r: test }
+    }
 
     // throw error(404, 'Not found');
 }
