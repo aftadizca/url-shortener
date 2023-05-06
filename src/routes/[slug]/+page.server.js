@@ -15,7 +15,8 @@ export async function load(x) {
     // console.log("assasas", r)
     if (test) {
         // console.log(test)
-        return { r: test }
+        test.then((val) => redirect(302, val))
+        // return { r: test }
 
     }
     // return { r: test }
