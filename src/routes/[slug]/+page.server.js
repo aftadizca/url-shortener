@@ -15,12 +15,12 @@ export async function load(x) {
     // console.log("assasas", r)
 
     // console.log(test)
-    test.then((/** @type {string} */ val) => { throw redirect(302, val) })
+    // test.then((/** @type {string} */ val) => { throw redirect(302, val) })
 
     // return { r: test }
 
 
-    // return { r: test }
+    return { r: test }
 
     // throw error(404, 'Not found');
 }
