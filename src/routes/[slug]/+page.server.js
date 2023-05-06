@@ -15,7 +15,8 @@ export async function load(x) {
     // console.log("assasas", r)
 
     // console.log(test)
-    throw redirect(302, test)
+    test.then((/** @type {string} */ val) => { throw redirect(302, val) })
+
     // return { r: test }
 
 
