@@ -7,7 +7,7 @@ export async function load(x) {
     // console.log(x)
     // const [r] = urls.filter(item => item.source === x.params.slug)
 
-    const test = await x.platform.env.URL.get(x.params.slug);
+    const test = x.platform.env.URL.get(x.params.slug);
 
 
 
@@ -15,7 +15,7 @@ export async function load(x) {
     // console.log("assasas", r)
 
     // console.log(test)
-    redirect(308, test)
+    redirect(302, test)
     // return { r: test }
 
 
