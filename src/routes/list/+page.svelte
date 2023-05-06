@@ -1,4 +1,4 @@
-<!-- <script>
+<script>
 	import { page } from '$app/stores';
 
 	/** @type {import('./$types').PageData} */
@@ -8,4 +8,6 @@
 	// the parent layout `load` function
 </script>
 
-<div>{console.log(data)}</div> -->
+{#each data.urls as url}
+	<div>{url.source} --> {url.destination}</div>
+{/each}
