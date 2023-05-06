@@ -1,4 +1,4 @@
-<script>
+<!-- <script>
 	import { page } from '$app/stores';
 
 	/** @type {import('./$types').PageData} */
@@ -8,4 +8,4 @@
 	// the parent layout `load` function
 </script>
 
-<div />
+<div /> -->
