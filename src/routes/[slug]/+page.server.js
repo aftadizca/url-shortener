@@ -7,14 +7,14 @@ export function load(x) {
     // console.log(x)
     const [r] = urls.filter(item => item.source === x.params.slug)
 
-    const test = x.platform.env.URL.get();
+    const test = x.platform.env.URL.get("clash");
 
 
 
     // console.log(params)
     // console.log("assasas", r)
     if (r) {
-        return { r: "sasaasas" }
+        return { r: test }
         // throw redirect(308, r.destination)
     }
     return { r: test }
