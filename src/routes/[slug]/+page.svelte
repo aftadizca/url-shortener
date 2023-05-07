@@ -8,10 +8,10 @@
 	export let data;
 	console.log(JSON.stringify(data));
 	if (browser) {
-		if (!data.r) {
+		if (data.url === null) {
 			throw error(404);
 		}
-		window.location = data.r;
+		window.location = data.url;
 	}
 	// redirect(302, data.r);
 	// we can access `data.posts` because it's returned from

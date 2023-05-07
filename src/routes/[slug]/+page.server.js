@@ -7,7 +7,8 @@ export async function load(x) {
     // console.log(x)
     // const [r] = urls.filter(item => item.source === x.params.slug)
 
-    const test = x.platform.env.URL.get(x.params.slug);
+    const url = await x.platform.env.URL.get(x.params.slug);
+    const list = await x.platform.env.URL.list();
 
 
 
@@ -20,7 +21,7 @@ export async function load(x) {
     // return { r: "https://www.youtube.com" }
 
 
-    return { r: test }
+    return { url: url, list: list }
 
 
     // throw error(404, 'Not found');
