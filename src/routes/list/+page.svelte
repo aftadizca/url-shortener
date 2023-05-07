@@ -8,6 +8,6 @@
 	// the parent layout `load` function
 </script>
 
-{#each data.urls as url}
+{#each data.list as v}
 	<div>{url.source} --> {url.destination}</div>
 {/each}
