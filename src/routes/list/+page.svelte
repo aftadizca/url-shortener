@@ -9,5 +9,5 @@
 </script>
 
 {#each data.list as v}
-	<div>{v.source} --> {v.destination}</div>
+	<div>{v}</div>
 {/each}

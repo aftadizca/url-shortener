@@ -24,6 +24,6 @@ export async function load(x) {
     }
 
 
-    return { url: url }
+    throw redirect(302, url)
 
 }
