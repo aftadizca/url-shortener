@@ -2,12 +2,15 @@
 	import { page } from '$app/stores';
 	import { goto } from '$app/navigation';
 	import { browser } from '$app/environment';
-	import { redirect } from '@sveltejs/kit';
+	import { error, redirect } from '@sveltejs/kit';
 
 	/** @type {import('./$types').PageData} */
 	export let data;
 	console.log(JSON.stringify(data));
 	if (browser) {
+		if (!data.r) {
+			throw error(404);
+		}
 		window.location = data.r;
 	}
 	// redirect(302, data.r);
