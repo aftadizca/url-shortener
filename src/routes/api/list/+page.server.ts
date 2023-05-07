@@ -1,6 +1,4 @@
-import { error } from '@sveltejs/kit';
-import { redirect } from '@sveltejs/kit';
-import { getKvValue, setKvValue, getKvList } from '$lib/workers'
+import { deleteKvValue, setKvValue, getKvList } from '$lib/workers'
 
 
 /** @type {import('./$types').PageLoad} */
@@ -24,5 +22,11 @@ export const actions = {
         const name = data.get('name');
         const url = data.get('url')?.toString();
         setKvValue(ctx, name, url)
+    },
+    delete: async (ctx: { request: { formData: () => any; }; }) => {
+        const data = await ctx.request.formData();
+        console.log(data)
+        const name = data.get('name');
+        deleteKvValue(ctx, name)
     },
 };

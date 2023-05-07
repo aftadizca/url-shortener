@@ -39,16 +39,28 @@ const devSetKvValue = (key: string, value: string) => {
     })
 }
 
-export const getKvValue = async (context: any, key: string): Promise<ShortUrl | null> => {
-    return dev ? await devGetKvValue(key) : await context.platform.env.URL.getWithMetadata(key)
+const devDeleteKvValue = (key: string) => {
+    const filterVal = devKvStore.keys.filter(x => x.name !== key)
+    devKvStore.keys = filterVal
+
+    return new Promise((resolve) => {
+        resolve(null)
+    })
 }
 
 export const getKvList = async (context: any): Promise<ListShortUrl | null> => {
     return dev ? await devGetKvList() : await context.platform.env.URL.list()
+}
+export const getKvValue = async (context: any, key: string): Promise<ShortUrl | null> => {
+    return dev ? await devGetKvValue(key) : await context.platform.env.URL.getWithMetadata(key)
 }
 
 export const setKvValue = async (context: any, key: string, value: string): Promise<void> => {
     return dev ? await devSetKvValue(key, value) : await context.platform.env.URL.put(key, "", {
         metadata: { url: value },
     })
+}
+
+export const deleteKvValue = async (context: any, key: string): Promise<null> => {
+    return dev ? await devDeleteKvValue(key) : await context.platform.env.URL.delete(key)
 }

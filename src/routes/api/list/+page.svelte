@@ -41,6 +41,12 @@
 				<TableBodyRow>
 					<TableBodyCell>{x.name}</TableBodyCell>
 					<TableBodyCell>{x.metadata.url}</TableBodyCell>
+					<TableBodyCell
+						><form method="POST" action="?/delete">
+							<Input name="name" class="mb-2" type="hidden" value={x.name} />
+							<Button type="submit">Delete</Button>
+						</form></TableBodyCell
+					>
 				</TableBodyRow>
 			{/each}
 		</TableBody>
