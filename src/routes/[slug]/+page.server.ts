@@ -11,11 +11,11 @@ export async function load(context: any) {
     // const url = await context?.platform?.env?.URL.get(context.params.slug);
     // setKvValue(context, "one", "ONEaaSASASASASAS")
     // setKvValue(context, "two", "TWOaaSASASASASAS")
-    const url = await getKvValue(context, context.params.slug)
+    const { metadata } = await getKvValue(context, context.params.slug)
 
 
 
-    console.log(url)
+    console.log(metadata)
     // console.log("assasas", r)
 
     // console.log(test)
@@ -23,11 +23,11 @@ export async function load(context: any) {
 
     // return { r: "https://www.youtube.com" }
 
-    if (url === null) {
+    if (metadata.url === null) {
         throw error(404, 'Not found');
     }
 
 
-    throw redirect(302, url)
+    throw redirect(302, metadata.url)
 
 }

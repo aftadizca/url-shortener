@@ -16,20 +16,20 @@ const devGetKvList = () => {
 
 const devSetKvValue = (key: string, value: string) => {
     return new Promise((resolve) => {
-        devKvStore[key] = value
+        devKvStore[key] = { value: '', metadata: { value: value } }
         resolve(key ?? null)
         // console.log("devKvStore", devKvStore)
     })
 }
 
-export const getKvValue = async (context: any, key: string): Promise<string | null> => {
-    return dev ? await devGetKvValue(key) : await context.platform.env.URL.get(key)
+export const getKvValue = async (context: any, key: string): Promise<object | null> => {
+    return dev ? await devGetKvValue(key) : await context.platform.env.URL.getWithMetadata(key)
 }
 
-export const getKvList = async (context: any): Promise<string | null> => {
+export const getKvList = async (context: any): Promise<Object | null> => {
     return dev ? await devGetKvList() : await context.platform.env.URL.list()
 }
 
 export const setKvValue = async (context: any, key: string, value: string): Promise<void> => {
-    return dev ? await devSetKvValue(key, value) : await context.platform.env.URL.put(key, value)
+    return dev ? await devSetKvValue(key, value) : await context.platform.env.URL.put(key, "", { metadata: { url: value } })
 }
