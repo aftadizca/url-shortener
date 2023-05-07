@@ -1,17 +1,21 @@
 import { error } from '@sveltejs/kit';
 import { redirect } from '@sveltejs/kit';
-import { urls } from '../../lib/url-list';
+import { getKvValue } from '$lib/workers'
 
-// /** @type {import('./$types').PageLoad} */
-export async function load(x) {
+/** @type {import('./$types').PageLoad} */
+export async function load(context: any) {
+
     // console.log(x)
     // const [r] = urls.filter(item => item.source === x.params.slug)
 
-    const url = await x.platform.env.URL.get(x.params.slug);
+    // const url = await context?.platform?.env?.URL.get(context.params.slug);
+    // setKvValue(context, "one", "ONEaaSASASASASAS")
+    // setKvValue(context, "two", "TWOaaSASASASASAS")
+    const url = await getKvValue(context, context.params.slug)
 
 
 
-    // console.log(params)
+    console.log(url)
     // console.log("assasas", r)
 
     // console.log(test)

@@ -8,6 +8,14 @@
 	// the parent layout `load` function
 </script>
 
-{#each data.list as v}
-	<div>{v}</div>
-{/each}
+<form method="POST" action="?/add">
+	<label>
+		Name
+		<input name="name" type="text" />
+	</label>
+	<label>
+		Url
+		<input name="url" type="text" />
+	</label>
+	<button>Add</button>
+</form>
