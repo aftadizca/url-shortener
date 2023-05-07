@@ -1,11 +1,13 @@
 import { error } from '@sveltejs/kit';
 import { redirect } from '@sveltejs/kit';
-import { getKvValue, setKvValue } from '$lib/workers'
+import { getKvValue, setKvValue, getKvList } from '$lib/workers'
 
 
 /** @type {import('./$types').PageLoad} */
 export async function load(context: any) {
-    // const url = await getKvValue(context, context.params.slug)
+
+    const list = await getKvList(context)
+    return { list: list }
     // // console.log(url)
     // if (url === null) {
     //     throw error(404, 'Not found');
