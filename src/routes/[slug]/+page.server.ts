@@ -5,29 +5,15 @@ import { getKvValue } from '$lib/workers'
 /** @type {import('./$types').PageLoad} */
 export async function load(context: any) {
 
-    // console.log(x)
-    // const [r] = urls.filter(item => item.source === x.params.slug)
+    const kvData = await getKvValue(context, context.params.slug)
+    console.log(kvData)
 
-    // const url = await context?.platform?.env?.URL.get(context.params.slug);
-    // setKvValue(context, "one", "ONEaaSASASASASAS")
-    // setKvValue(context, "two", "TWOaaSASASASASAS")
-    const { metadata } = await getKvValue(context, context.params.slug)
+    if (kvData !== null) {
+        throw redirect(302, kvData.metadata.url)
 
-
-
-    // console.log(metadata)
-    // console.log("assasas", r)
-
-    // console.log(test)
-    // test.then((/** @type {string} */ val) => { throw redirect(302, val) })
-
-    // return { r: "https://www.youtube.com" }
-
-    if (metadata.url === null) {
-        throw error(404, 'Not found');
     }
+    throw error(404, 'Not found');
 
 
-    throw redirect(302, metadata.url)
 
 }

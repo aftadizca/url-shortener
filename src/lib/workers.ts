@@ -1,16 +1,27 @@
 import { dev } from '$app/environment'
 
 interface ShortUrl {
-    value: string;
-    metadata: object;
+    name: string;
+    metadata: {
+        url: string
+    };
+}
+
+interface ListShortUrl {
+    keys: [{ name: string, metadata: { url: string } }]
 }
 
 
-const devKvStore: any = { one: { value: '', metadata: { url: 'Sasasasasasasasone' } } }
+const devKvStore: any = {
+    keys: [{ name: 'one', metadata: { url: 'Sasasasasasasasone' } },
+    { name: 'yt', metadata: { url: 'https://youtube.com' } },]
+}
 
 const devGetKvValue = (key: string) => {
+    const filterVal = devKvStore.keys.filter(x => x.name === key)
+
     return new Promise((resolve) => {
-        resolve(devKvStore[key] ?? null)
+        resolve(filterVal[0] ?? null)
     })
 }
 
@@ -22,7 +33,7 @@ const devGetKvList = () => {
 
 const devSetKvValue = (key: string, value: string) => {
     return new Promise((resolve) => {
-        devKvStore[key] = { value: '', metadata: { value: value } }
+        devKvStore.keys.push({ name: key, metadata: { url: value } })
         resolve(key ?? null)
         // console.log("devKvStore", devKvStore)
     })
@@ -32,7 +43,7 @@ export const getKvValue = async (context: any, key: string): Promise<ShortUrl | 
     return dev ? await devGetKvValue(key) : await context.platform.env.URL.getWithMetadata(key)
 }
 
-export const getKvList = async (context: any): Promise<Object | null> => {
+export const getKvList = async (context: any): Promise<ListShortUrl | null> => {
     return dev ? await devGetKvList() : await context.platform.env.URL.list()
 }
 

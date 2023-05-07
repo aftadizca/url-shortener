@@ -18,7 +18,7 @@ export async function load(context: any) {
 
 /** @type {import('./$types').Actions} */
 export const actions = {
-    add: async (ctx) => {
+    add: async (ctx: { request: { formData: () => any; }; }) => {
         const data = await ctx.request.formData();
         console.log(data)
         const name = data.get('name');
