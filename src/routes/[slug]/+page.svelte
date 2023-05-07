@@ -6,8 +6,8 @@
 
 	/** @type {import('./$types').PageData} */
 	export let data;
-	console.log(data);
-	goto(data.r, { replaceState: true });
+	console.log(JSON.stringify(data));
+	window.location = data.r;
 	// redirect(302, data.r);
 	// we can access `data.posts` because it's returned from
 	// the parent layout `load` function
