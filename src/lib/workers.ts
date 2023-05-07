@@ -1,6 +1,12 @@
 import { dev } from '$app/environment'
 
-const devKvStore: any = { one: 'ONEaaSASASASASAS', two: 'TWOaaSASASASASAS' }
+interface ShortUrl {
+    value: string;
+    metadata: object;
+}
+
+
+const devKvStore: any = { one: { value: '', metadata: { url: 'Sasasasasasasasone' } } }
 
 const devGetKvValue = (key: string) => {
     return new Promise((resolve) => {
@@ -22,7 +28,7 @@ const devSetKvValue = (key: string, value: string) => {
     })
 }
 
-export const getKvValue = async (context: any, key: string): Promise<object | null> => {
+export const getKvValue = async (context: any, key: string): Promise<ShortUrl | null> => {
     return dev ? await devGetKvValue(key) : await context.platform.env.URL.getWithMetadata(key)
 }
 
@@ -31,5 +37,7 @@ export const getKvList = async (context: any): Promise<Object | null> => {
 }
 
 export const setKvValue = async (context: any, key: string, value: string): Promise<void> => {
-    return dev ? await devSetKvValue(key, value) : await context.platform.env.URL.put(key, "", { metadata: { url: value } })
+    return dev ? await devSetKvValue(key, value) : await context.platform.env.URL.put(key, "", {
+        metadata: { url: value },
+    })
 }

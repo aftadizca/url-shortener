@@ -15,7 +15,7 @@ export async function load(context: any) {
 
 
 
-    console.log(metadata)
+    // console.log(metadata)
     // console.log("assasas", r)
 
     // console.log(test)
