@@ -17,7 +17,15 @@ const config = {
 	],
 
 	theme: {
-		extend: {},
+		fontFamily: {
+			'sans': ['Dosis']
+		},
+		extend: {
+			colors: {
+				'bg': '#30292F',
+				'secondary': '#5f5aa2',
+			}
+		},
 	},
 
 	plugins: [

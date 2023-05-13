@@ -18,15 +18,18 @@ export async function load(context: any) {
 export const actions = {
     add: async (ctx: { request: { formData: () => any; }; }) => {
         const data = await ctx.request.formData();
-        console.log(data)
+        console.log(ctx)
+        // console.log(data)
         const name = data.get('name');
         const url = data.get('url')?.toString();
         setKvValue(ctx, name, url)
+        return { ok: "OK" }
     },
     delete: async (ctx: { request: { formData: () => any; }; }) => {
         const data = await ctx.request.formData();
-        console.log(data)
+        // console.log(data)
         const name = data.get('name');
         deleteKvValue(ctx, name)
+
     },
 };

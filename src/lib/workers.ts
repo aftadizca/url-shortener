@@ -18,7 +18,7 @@ const devKvStore: any = {
 }
 
 const devGetKvValue = (key: string) => {
-    const filterVal = devKvStore.keys.filter(x => x.name === key)
+    const filterVal = devKvStore.keys.filter(({ name }: any) => name === key)
 
     return new Promise((resolve) => {
         resolve(filterVal[0] ?? null)
@@ -40,7 +40,7 @@ const devSetKvValue = (key: string, value: string) => {
 }
 
 const devDeleteKvValue = (key: string) => {
-    const filterVal = devKvStore.keys.filter(x => x.name !== key)
+    const filterVal = devKvStore.keys.filter(({ name }: any) => name !== key)
     devKvStore.keys = filterVal
 
     return new Promise((resolve) => {
