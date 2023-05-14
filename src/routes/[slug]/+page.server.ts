@@ -6,7 +6,7 @@ import { getURL } from '$lib/firebase'
 export async function load(context: any) {
 
     const urlData = await (await getURL(context.params.slug)).data()
-    console.log(urlData)
+    // console.log(urlData)
 
     if (urlData !== undefined) {
         throw redirect(302, urlData.url)

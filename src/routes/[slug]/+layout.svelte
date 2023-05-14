@@ -1,6 +1,5 @@
-<script>
-	/** @type {import('./$types').LayoutData} */
-	export let data;
+<script lang="ts">
+	// export const data: LayoutData;
 </script>
 
 <main>

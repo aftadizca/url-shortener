@@ -5,8 +5,6 @@ import { redirect, error } from '@sveltejs/kit';
 const SCOPES = ['openid', 'profile', 'email'];
 
 export const load: LayoutServerLoad = ({ locals, url }) => {
-
-    console.log(url)
     if (!isSignedIn(locals) && url.pathname === '/') {
         throw redirect(302, generateAuthUrl(locals, url, SCOPES, url.pathname));
     }

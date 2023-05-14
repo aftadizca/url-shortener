@@ -1,18 +1,11 @@
-<script>
-	import { page } from '$app/stores';
-	import { goto } from '$app/navigation';
-	import { browser } from '$app/environment';
-	import { error, redirect } from '@sveltejs/kit';
+<script lang="ts">
+	// 	import { page } from '$app/stores';
+	// 	import { goto } from '$app/navigation';
+	// 	import { browser } from '$app/environment';
+	// 	import { error, redirect } from '@sveltejs/kit';
+	// 	import type { PageData } from './$types';
 
-	/** @type {import('./$types').PageData} */
-	export let data;
-	// console.log(JSON.stringify(data));
-	// if (browser) {
-	// 	window.location = data.url;
-	// }
-	// redirect(302, data.r);
-	// we can access `data.posts` because it's returned from
-	// the parent layout `load` function
+	// 	export let data: PageData;
 </script>
 
 <div />
