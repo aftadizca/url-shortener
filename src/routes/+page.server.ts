@@ -1,35 +1,39 @@
-import { deleteKvValue, setKvValue, getKvList } from '$lib/workers'
+
+import { setURL, getURL, getAllURL, deleteURL } from '$lib/firebase'
+import type { Actions } from '@sveltejs/kit';
+import type { PageServerLoad } from './$types';
 
 
-/** @type {import('./$types').PageLoad} */
+/** @type {import('./$types').PageServerLoad} */
 export async function load(context: any) {
 
-    const list = await getKvList(context)
+    const list = getAllURL()
     return { list: list }
-    // // console.log(url)
-    // if (url === null) {
-    //     throw error(404, 'Not found');
-    // }
-    // throw redirect(302, url)
+    // // // console.log(url)
+    // // if (url === null) {
+    // //     throw error(404, 'Not found');
+    // // }
+    // // throw redirect(302, url)
 
 }
 
-/** @type {import('./$types').Actions} */
-export const actions = {
-    add: async (ctx: { request: { formData: () => any; }; }) => {
-        const data = await ctx.request.formData();
-        console.log(ctx)
+export const actions: Actions = {
+    add: async (event) => {
+        const formData = await event.request.formData();
         // console.log(data)
-        const name = data.get('name');
-        const url = data.get('url')?.toString();
-        setKvValue(ctx, name, url)
-        return { ok: "OK" }
+        const name = formData.get('name')?.toString();
+        const url = formData.get('url')?.toString();
+        if (name && url) {
+            setURL(name, url)
+            return { message: "Success" }
+        }
+        return { message: "Failed to add url", error: true }
     },
     delete: async (ctx: { request: { formData: () => any; }; }) => {
         const data = await ctx.request.formData();
         // console.log(data)
         const name = data.get('name');
-        deleteKvValue(ctx, name)
+        deleteURL(name)
 
     },
 };

@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Input, Label, Helper, Button } from 'flowbite-svelte';
+	import { Input, Label, Alert, Button } from 'flowbite-svelte';
 	import {
 		Navbar,
 		NavBrand,
@@ -19,11 +19,15 @@
 		TableHead,
 		TableHeadCell
 	} from 'flowbite-svelte';
-	import type { PageData } from './$types.js';
+	import type { ActionData, PageData } from './$types.js';
 	import { invalidateAll } from '$app/navigation';
-	import { signIn, signOut, initialize } from 'svelte-google-auth/client';
+	import { signOut, initialize } from 'svelte-google-auth/client';
 
 	export let data: PageData;
+	export let form: ActionData;
+	// console.log('data', data);
+	// console.log('form', form);
+	let name: string, url: string;
 	initialize(data, invalidateAll);
 
 	// we can access `data.posts` because it's returned from
@@ -49,17 +53,25 @@
 
 <!-- {data.auth.user?.name}
 <Button size="sm" on:click={() => signOut()}>Sign Out</Button> -->
+{#if form}
+	<div class="flex justify-center mb-8">
+		<Alert border class="min-w-[50vw] h-20 text" color={form.error ? 'red' : 'green'}>
+			<span class="font-bold text-xl">Info</span>
+			<br /><span class="font-normal text-lg">{form.message}</span>
+		</Alert>
+	</div>
+{/if}
 
 <form method="POST" action="?/add">
 	<div class="flex mb-2 gap-3 justify-center">
 		<div>
-			<Input placeholder="Name" name="name" class="mb-2 !w-64" type="text" />
+			<Input placeholder="Name" name="name" class="mb-2 !w-64" type="text" bind:value={name} />
 		</div>
 		<div>
-			<Input placeholder="URL" name="url" class="mb-2 !w-96" type="text" />
+			<Input placeholder="URL" name="url" class="mb-2 !w-96" type="text" bind:value={url} />
 		</div>
 		<div>
-			<Button gradient color="purpleToBlue" type="submit">Add</Button>
+			<Button disabled={!(name && url)} gradient color="purpleToBlue" type="submit">Add</Button>
 		</div>
 	</div>
 </form>
@@ -73,13 +85,13 @@
 				<TableHeadCell />
 			</TableHead>
 			<TableBody>
-				{#each data.list.keys as x}
+				{#each data.list as { name, url }}
 					<TableBodyRow>
-						<TableBodyCell>{x.name}</TableBodyCell>
-						<TableBodyCell>{x.metadata.url}</TableBodyCell>
+						<TableBodyCell>{name}</TableBodyCell>
+						<TableBodyCell>{url}</TableBodyCell>
 						<TableBodyCell class="!w-12"
 							><form method="POST" action="?/delete">
-								<Input name="name" class="mb-2" type="hidden" value={x.name} />
+								<Input name="name" class="mb-2" type="hidden" value={name} />
 								<Button gradient color="purpleToBlue" type="submit" size="xs">Delete</Button>
 							</form></TableBodyCell
 						>
