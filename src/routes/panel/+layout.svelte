@@ -1,9 +1,8 @@
 <script>
-	/** @type {import('./$types').LayoutData} */
-	export let data;
+	import '../app.postcss';
 </script>
 
-<main>
+<main class="justify-center p-5">
 	<!-- +page.svelte is rendered in this <slot> -->
 	<slot />
 </main>

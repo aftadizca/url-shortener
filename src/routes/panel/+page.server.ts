@@ -5,10 +5,15 @@ import type { PageServerLoad } from './$types';
 
 
 /** @type {import('./$types').PageServerLoad} */
-export async function load(context: PageServerLoad) {
+export async function load(context: any) {
 
     const list = getAllURL()
     return { list: list }
+    // // // console.log(url)
+    // // if (url === null) {
+    // //     throw error(404, 'Not found');
+    // // }
+    // // throw redirect(302, url)
 
 }
 

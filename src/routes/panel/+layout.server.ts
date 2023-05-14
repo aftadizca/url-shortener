@@ -6,11 +6,11 @@ const SCOPES = ['openid', 'profile', 'email'];
 
 export const load: LayoutServerLoad = ({ locals, url }) => {
 
-    console.log(url)
-    if (!isSignedIn(locals) && url.pathname === '/') {
+    // console.log(isSignedIn(locals))
+    if (!isSignedIn(locals)) {
         throw redirect(302, generateAuthUrl(locals, url, SCOPES, url.pathname));
     }
-    if (isSignedIn(locals) && locals.user.email !== "aftadizca@gmail.com") {
+    if (locals.user.email !== "aftadizca@gmail.com") {
         throw error(403, "Access Denied");
     }
 
