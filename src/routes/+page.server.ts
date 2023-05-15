@@ -29,6 +29,7 @@ export const actions: Actions = {
         // console.log(data)
         const name = data.get('name');
         deleteURL(name)
+        return { message: "Link deleted" }
 
     },
 };
